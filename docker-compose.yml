@@ -1,0 +1,22 @@
+version: '3.8'
+
+services:
+  wiki:
+    image: nginx
+    ports:
+      - "8080:80"
+    networks:
+      - frontend
+      - backend
+
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: hardened_password_123
+    networks:
+      - backend
+
+networks:
+  frontend:
+  backend:
+    internal: true # This creates the air-gap
